@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OrderController {
+
     @Autowired
     private CashierServiceImpl cashierService;
 
@@ -20,7 +21,7 @@ public class OrderController {
         return cashierService.getOrder(orderByCustomer, orderByPrice);
     }
 
-    @GetMapping(value = "/orders/{id}")
+    @GetMapping(value = "/orders/{orderId}")
     public Order getOrderById (
             @PathVariable int orderId){
         return cashierService.getOrderById(orderId);

@@ -32,13 +32,11 @@ public class CashierServiceImpl implements CashierService {
 
     @Override
     public Order getOrderById(int orderId) {
-        Order order = null;
-        try {
-            order = orderItemLists.get(orderId);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        return order;
+        Order orderById = orderItemLists.stream()
+                .filter(order -> orderId == order.getOrderId())
+                .findAny()
+                .orElse(null);
+        return orderById;
     }
 
     @Override
