@@ -16,18 +16,18 @@ import java.util.List;
 public class CashierServiceImpl implements CashierService {
 
     private List<Order> orderItemLists = new ArrayList<>();
-    private int orderId = 1;
+    private int orderId = 0;
 
-    @Override
-    public OrderResponse getOrder() {
-//        return Order
-//                .builder()
-////                .orderItems(getOrderItems())
-//                .totalPrice(2100)
-//                .customer(Customer.builder().build())
-//                .build();
-        return new OrderResponse(orderItemLists);
-    }
+//    @Override
+//    public OrderResponse getOrder() {
+////        return Order
+////                .builder()
+//////                .orderItems(getOrderItems())
+////                .totalPrice(2100)(
+////                .customer(Customer.builder().build())
+////                .build();
+//        return new OrderResponse(orderItemLists);
+//    }
 
     @Override
     public Order getOrderById(int id) {
