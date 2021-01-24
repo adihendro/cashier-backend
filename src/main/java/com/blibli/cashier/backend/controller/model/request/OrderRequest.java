@@ -1,15 +1,15 @@
-package com.blibli.cashier.backend.controller.request;
+package com.blibli.cashier.backend.controller.model.request;
 
 import com.blibli.cashier.backend.entity.Customer;
 import com.blibli.cashier.backend.entity.OrderItem;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class OrderRequest {
-    private int id;
-    private int totalPrice;
     private Customer customer;
-    private OrderItem[] orderItem;
+    private List<OrderItemRequest> orderItems;
 }

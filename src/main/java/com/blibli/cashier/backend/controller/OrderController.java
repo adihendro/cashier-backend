@@ -1,36 +1,35 @@
 package com.blibli.cashier.backend.controller;
 
-import com.blibli.cashier.backend.controller.request.OrderRequest;
-import com.blibli.cashier.backend.controller.response.OrderResponse;
+import com.blibli.cashier.backend.controller.model.request.OrderRequest;
+import com.blibli.cashier.backend.controller.model.response.OrderResponse;
 import com.blibli.cashier.backend.entity.Order;
-import com.blibli.cashier.backend.service.implementation.CashierServiceImpl;
+import com.blibli.cashier.backend.service.CashierService;
+import com.blibli.cashier.backend.service.impl.CashierServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OrderController {
     @Autowired
     private CashierServiceImpl cashierService;
 
-    @GetMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/orders")
     public OrderResponse getOrder () {
-        Order order = cashierService.getOrder();
-        return OrderResponse
-                .builder()
-                .totalPrice(order.getTotalPrice())
-                .customer(order.getCustomer())
-                .orderItem(order.getOrderItem())
-                .build();
+        return cashierService.getOrder()
     }
 
+    @GetMapping(value = "/orders/{id}")
+    public Order getOrderById(
+            @PathVariable int id){
+        return CashierService.getOrderById(id);
+    }
+    )
+
+
     @PostMapping(value = "/orders")
-    public String submitOrder (
+    public Order submitOrder (
             @RequestBody OrderRequest orderRequest) {
-        Order order = cashierService.insertOrder(orderRequest);
-        return "success: true";
+        return cashierService.insertOrder(orderRequest);
     }
 }
