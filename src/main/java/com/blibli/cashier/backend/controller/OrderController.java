@@ -13,14 +13,17 @@ public class OrderController {
     private CashierServiceImpl cashierService;
 
     @GetMapping(value = "/orders")
-    public OrderResponse getOrder () {
-        return cashierService.getOrder();
+    public OrderResponse getOrder (
+        @RequestParam(required = false) boolean orderByCustomer,
+        @RequestParam(required = false) boolean orderByPrice
+    ) {
+        return cashierService.getOrder(orderByCustomer, orderByPrice);
     }
 
     @GetMapping(value = "/orders/{id}")
     public Order getOrderById (
-            @PathVariable int id){
-        return cashierService.getOrderById(id);
+            @PathVariable int orderId){
+        return cashierService.getOrderById(orderId);
     }
 
 

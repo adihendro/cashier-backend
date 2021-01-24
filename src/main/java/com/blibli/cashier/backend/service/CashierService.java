@@ -5,7 +5,7 @@ import com.blibli.cashier.backend.controller.model.response.OrderResponse;
 import com.blibli.cashier.backend.entity.Order;
 
 public interface CashierService {
-    public OrderResponse getOrder();
-    public Order getOrderById(int id);
+    public OrderResponse getOrder(boolean orderByCustomer, boolean orderByPrice);
+    public Order getOrderById(int orderId);
     public Order insertOrder(OrderRequest orderRequest);
 }
