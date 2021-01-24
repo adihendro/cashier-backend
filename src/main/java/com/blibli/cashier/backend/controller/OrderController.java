@@ -3,7 +3,6 @@ package com.blibli.cashier.backend.controller;
 import com.blibli.cashier.backend.controller.model.request.OrderRequest;
 import com.blibli.cashier.backend.controller.model.response.OrderResponse;
 import com.blibli.cashier.backend.entity.Order;
-import com.blibli.cashier.backend.service.CashierService;
 import com.blibli.cashier.backend.service.impl.CashierServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +12,13 @@ public class OrderController {
     @Autowired
     private CashierServiceImpl cashierService;
 
-//    @GetMapping(value = "/orders")
-//    public OrderResponse getOrder () {
-//        return cashierService.getOrder();
-//    }
+    @GetMapping(value = "/orders")
+    public OrderResponse getOrder () {
+        return cashierService.getOrder();
+    }
 
     @GetMapping(value = "/orders/{id}")
-    public Order getOrderById(
+    public Order getOrderById (
             @PathVariable int id){
         return cashierService.getOrderById(id);
     }
